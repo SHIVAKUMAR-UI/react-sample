@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
-class Dashboard extends Component {
+class ChangePass extends Component {
     state = {  }
     render() { 
         return ( 
-            <div>Dashboard</div>
+            <div>ChangePass</div>
          );
     }
 }
  
-export default Dashboard;
+export default ChangePass;

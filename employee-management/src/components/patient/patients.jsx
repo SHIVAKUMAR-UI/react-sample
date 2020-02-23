@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
-class Dashboard extends Component {
+class Patients extends Component {
     state = {  }
     render() { 
         return ( 
-            <div>Dashboard</div>
+            <div>Patients</div>
          );
     }
 }
  
-export default Dashboard;
+export default Patients;

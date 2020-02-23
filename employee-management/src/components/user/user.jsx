@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
-class Dashboard extends Component {
+class User extends Component {
     state = {  }
     render() { 
         return ( 
-            <div>Dashboard</div>
+            <div>User</div>
          );
     }
 }
  
-export default Dashboard;
+export default User;
