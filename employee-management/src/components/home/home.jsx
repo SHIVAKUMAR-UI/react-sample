@@ -1,10 +1,31 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { fetchUser } from "../redux";
 
-class Home extends Component {
-  state = {};
-  render() {
-    return <div>Home</div>;
-  }
+function Home({ userData, fetchUsers }) {
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+  return (
+    <div>
+      {userData.user.map(user => 
+        <div key={user.id}> {user.name} </div>
+      )}
+    </div>
+  );
 }
 
-export default Home;
+const mapStateToProps = state => {
+  return {
+    userData: state.user
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchUsers: () => dispatch(fetchUser())
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
