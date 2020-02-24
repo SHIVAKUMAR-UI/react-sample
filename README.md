@@ -1,2 +1,2 @@
 # react-sample
-React project and keeps updated with all angular features
+React project and keeps updated with all React features
