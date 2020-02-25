@@ -5,6 +5,8 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+console.log('environments', process.env);
+
 ReactDOM.render(
 <BrowserRouter><App /></BrowserRouter>, document.getElementById('root'));
 

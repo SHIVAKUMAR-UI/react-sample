@@ -3,7 +3,7 @@ import {
   FETCH_USER_SUCCESS,
   FETCH_USER_FAILURE
 } from "./userActionTypes";
-import axios from "axios";
+import http from '../../../services/HttpService'
 
 export const fetchUserRequest = () => {
   return {
@@ -28,7 +28,7 @@ export const fetchUserFailure = error => {
 export const fetchUser = () => {
   return dispatch => {
       dispatch(fetchUserRequest());
-    axios
+      http
       .get("https://jsonplaceholder.typicode.com/users")
       .then(response => {
           const user = response.data;

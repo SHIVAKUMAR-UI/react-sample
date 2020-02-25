@@ -1,8 +1,11 @@
 import React from "react";
+import Joi from "joi-browser";
+import { toast } from "react-toastify";
+
 import Input from "../../common/input";
 import InputButton from "../../common/inputButton";
-import Joi from "joi-browser";
-import Form from "../../common/form"
+import Form from "../../common/form";
+import { authenticate } from "../../../services/AuthService";
 
 class Login extends Form {
   state = {
@@ -22,9 +25,15 @@ class Login extends Form {
       .label("Password")
   };
 
-
-
-  doSubmit = () => {};
+  doSubmit = async () => {
+    try {
+     await authenticate(this.state.data);
+      toast.success("Authenticated Successfully!");
+    } catch (ex) {
+      console.log(ex);
+      toast.error("Authentication Failed!");
+    }
+  };
 
   render() {
     const { data, errors } = this.state;

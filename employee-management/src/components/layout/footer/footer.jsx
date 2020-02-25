@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="text-right footer">
+    <div className="footer">
       <blockquote className="blockquote mb-0">
         <p>
           All rights reserved @shivakumar.kokkula

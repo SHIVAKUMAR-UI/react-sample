@@ -28,16 +28,18 @@ class Form extends Component {
       abortEarly: false
     });
     const errors = {};
+    if( result && result.error)
     result.error.details.map(
       detail => (errors[detail.path[0]] = detail.message)
     );
     return Object.keys(errors).length === 0 ? null : errors;
   };
 
-  handleSubmit = () => {
+  handleSubmit = e => {
+    e.preventDefault();
     const errors = this.validateForm();
     this.setState({ errors: errors || {} });
-    if (!errors) return;
+    // if (!errors) return;
     this.doSubmit();
   };
 }
