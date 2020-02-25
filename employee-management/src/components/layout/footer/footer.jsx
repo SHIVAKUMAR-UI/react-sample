@@ -3,7 +3,7 @@ import React from "react";
 const Footer = () => {
   return (
     <div className="footer">
-      <blockquote className="blockquote mb-0">
+      <blockquote className="blockquote mb-0 small">
         <p>
           All rights reserved @shivakumar.kokkula
         </p>

@@ -26,6 +26,7 @@ class Login extends Form {
   };
 
   doSubmit = async () => {
+    
     try {
      await authenticate(this.state.data);
       toast.success("Authenticated Successfully!");
@@ -65,7 +66,7 @@ class Login extends Form {
                   error={errors.password}
                 />
 
-                <InputButton name="Submit" onClick={this.handleSubmit} />
+                <InputButton name="Login" onClick={this.handleSubmit} />
               </form>
             </div>
           </div>

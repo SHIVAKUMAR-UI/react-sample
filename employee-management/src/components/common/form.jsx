@@ -39,7 +39,7 @@ class Form extends Component {
     e.preventDefault();
     const errors = this.validateForm();
     this.setState({ errors: errors || {} });
-    // if (!errors) return;
+    if (errors) return;
     this.doSubmit();
   };
 }

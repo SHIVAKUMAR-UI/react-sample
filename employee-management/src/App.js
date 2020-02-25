@@ -9,6 +9,7 @@ import Header from "./components/layout/header/header";
 import Footer from "./components/layout/footer/footer";
 import { Provider } from "react-redux";
 import store from "./components/redux/store";
+import Loading from "./components/common/loading";
 
 function App() {
   return (
@@ -16,7 +17,9 @@ function App() {
       <ToastContainer />
       <Provider store={store}>
         <Header />
-        <div className="App container">
+        <Loading />
+        <div className="App container mt-5">
+          
           <Routes />
         </div>
         <Footer />
