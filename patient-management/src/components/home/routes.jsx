@@ -40,7 +40,8 @@ const Routes = () => {
       <Route component={Forgot} path="/forgotpassword/:id" />
       <Route component={Home} path="/logout" />
       <Route component={NotFound} path="/not-found" />
-      <Route component={Home} path="/" />
+      {/* <Route component={Dashboard} path="/" /> */}
+      <Redirect from="/" to="/dashboard" />
       <Redirect to="/not-found" />
     </Switch>
   );

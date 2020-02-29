@@ -43,6 +43,11 @@ class Header extends Component {
                 Patients
               </Link>
             </li>
+            <li className="nav-item">
+              <Link to="/login" className="nav-link">
+                Logout
+              </Link>
+            </li>
           </ul>
           <form className="form-inline my-2 my-lg-0">
             <input

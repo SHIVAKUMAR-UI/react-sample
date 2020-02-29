@@ -6,7 +6,7 @@ function Home({ userData, fetchUsers }) {
   useEffect(() => {
     if( !userData.user || userData.user.length === 0)
     fetchUsers();
-  }, []);
+  }, [fetchUsers, userData.user]);
 
   return (
     <div>

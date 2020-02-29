@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Joi from "joi-browser";
 import { toast } from "react-toastify";
 
@@ -6,6 +6,7 @@ import Input from "../common/input";
 import InputButton from "../common/inputButton";
 import Select from "../common/select";
 import Form from "../common/form";
+import WithModalPopup from "../common/withModalPopup";
 
 class User extends Form {
   state = {
@@ -90,9 +91,6 @@ class User extends Form {
     const { data, errors } = this.state;
     return (
       <form>
-        <div>
-          <h2>User</h2>
-        </div>
         <div className="row">
           <Input
             label="First Name"
@@ -188,4 +186,4 @@ class User extends Form {
   }
 }
 
-export default User;
+export default WithModalPopup(User);
