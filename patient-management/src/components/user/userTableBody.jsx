@@ -8,17 +8,17 @@ const UserTableBody = props => {
     <tbody>
       {usersAfterPagination &&
         usersAfterPagination.map(user => (
-          <tr key={user.id}>
+          <tr key={user._id}>
             <th scope="row">{(currentPage - 1) * pageSize + tableIndex++}</th>
-            <td>{user.name} </td>
+            <td>{user.firstName + ' ' + user.middleName + ' ' + user.lastName } </td>
             <td>{user.email} </td>
-            <td>{user.phone} </td>
+            <td>{user.contactNumber} </td>
             <td>
-              {user.address && (
+              {user && (
                 <div>
                   <span>
-                    {user.address.street}, {user.address.suite},{" "}
-                    {user.address.city}, {user.address.zipcode}
+                    {user.suite},{user.state}
+                    {user.city}, {user.zipcode}
                   </span>
                 </div>
               )}{" "}

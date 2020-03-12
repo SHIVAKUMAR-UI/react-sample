@@ -3,15 +3,20 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchUser } from "../redux";
 
-import User from './user';
+import User from "./user";
 import InputButton from "../common/inputButton";
 import Pagination from "../common/pagination";
 import { paginate } from "../utils/paginate";
 import UserTableBody from "./userTableBody";
+import { getAllActiveUsers } from "../../services/UserService";
 import _ from "lodash";
 
 class Users extends Component {
   state = {
+    userData: {
+      loading: false,
+      user: {}
+    },
     pageSize: 4,
     currentPage: 1,
     sortColumn: {},
@@ -19,8 +24,28 @@ class Users extends Component {
   };
 
   componentDidMount() {
-    const { userData } = this.props;
-    if (!userData.user || userData.user.length === 0) this.props.getUsers();
+    let { userData } = this.state;
+    try {
+      userData.loading = true;
+      this.setState({ userData });
+      getAllActiveUsers().then(
+        response => {
+          userData.loading = false;
+          userData.user = response.data;
+          this.setState({ userData });
+        }
+      ).catch(errorResponse => {
+        userData.loading = false;
+        userData.user = [];
+        this.setState({ userData });
+      });
+      // const { userData } = this.props;
+      // if (!userData.user || userData.user.length === 0) this.props.getUsers();
+    } catch(ex) {
+
+    }
+    
+    
   }
 
   raiseSort = path => {
@@ -37,14 +62,14 @@ class Users extends Component {
   newUser = () => {
     let { showUser } = this.state;
     showUser = true;
-    this.setState({showUser});
+    this.setState({ showUser });
   };
 
   closeUser = () => {
     let { showUser } = this.state;
     showUser = false;
-    this.setState({showUser});
-  }
+    this.setState({ showUser });
+  };
 
   showPageWithIndex = index => {
     this.setState({ currentPage: index });
@@ -55,7 +80,7 @@ class Users extends Component {
   };
 
   render() {
-    const { userData } = this.props;
+    const { userData } = this.state;
     const { sortColumn, pageSize, currentPage, showUser } = this.state;
 
     const sortedUsers = _.orderBy(
@@ -68,7 +93,9 @@ class Users extends Component {
 
     return (
       <div>
-        {showUser && <User headerName="Create User" onClickClose={this.closeUser} />}
+        {showUser && (
+          <User headerName="Create User" onClickClose={this.closeUser} />
+        )}
         <div className="row">
           <div className="col">
             <h2>Users List</h2>

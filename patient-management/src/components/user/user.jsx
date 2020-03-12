@@ -8,6 +8,8 @@ import Select from "../common/select";
 import Form from "../common/form";
 import WithModalPopup from "../common/withModalPopup";
 
+import { createUser } from "../../services/UserService";
+
 class User extends Form {
   state = {
     data: {},
@@ -16,7 +18,7 @@ class User extends Form {
 
   constructor(props) {
     super(props);
-    const address = this.getInitialAddress();
+    // const address = this.getInitialAddress();
     this.state = {
       data: {
         firstName: "",
@@ -24,10 +26,14 @@ class User extends Form {
         lastName: "",
         contactNumber: "",
         email: "",
-        address: address
+        suite: "",
+        city: "1",
+        state: "1",
+        country: "1",
+        zipcode: ""
       },
       errors: {
-        address: address
+        // address: address
       }
     };
   }
@@ -78,9 +84,15 @@ class User extends Form {
 
   doSubmit = async () => {
     try {
-        console.log("form data",this.state.data);
+      console.log("form data", this.state.data);
       //  await authenticate(this.state.data);
-      toast.success("User Created Successfully!");
+      createUser(this.state.data)
+        .then(response => {
+          toast.success("User Created Successfully!");
+        })
+        .catch(errorResponse => {
+          toast.error("Creation Failed!");
+        });
     } catch (ex) {
       console.log(ex);
       toast.error("Creation Failed!");
@@ -150,33 +162,36 @@ class User extends Form {
           <Select
             label="Country"
             name="country"
-            value={data.address.country}
+            lookup={[{ id: "1", name: "india" }]}
+            value={data.country}
             onChange={this.onInputChange}
-            error={errors.address.country}
+            error={errors.country}
           />
           <Select
             label="Province"
             name="province"
-            value={data.address.province}
+            lookup={[{ id: "1", name: "south" }]}
+            value={data.province}
             onChange={this.onInputChange}
-            error={errors.address.province}
+            error={errors.province}
           />
         </div>
         <div className="row">
           <Select
             label="City"
             name="city"
-            value={data.address.city}
+            lookup={[{ id: "1", name: "hyderabad" }]}
+            value={data.city}
             onChange={this.onInputChange}
-            error={errors.address.city}
+            error={errors.city}
           />
           <Input
             label="Zipcode"
             name="zipcode"
             type="text"
-            value={data.address.zipcode}
+            value={data.zipcode}
             onChange={this.onInputChange}
-            error={errors.address.zipcode}
+            error={errors.zipcode}
           />
         </div>
 
